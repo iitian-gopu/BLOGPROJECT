@@ -1,0 +1,44 @@
+{% extends 'blogapp/base.html' %}
+{%load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+ Share Post by Email
+{% endblock title %}
+
+
+
+
+{% block content %}
+
+
+{% if sent %}
+<h1>Email Successfully Sent</h1>
+<h2>Post With title: {{post.title|title}} Information Shared by Email</h2>
+{%else%}
+
+<!-- Content Goes here -->
+<div class="container">
+<div class="row">
+    
+
+
+<div class="col-md-8 card mb-4  mt-3 ">
+    <div class="card-body">
+<div class="container" ">
+<h1 style="margin-top: 15px;">Share Post "{{post.title|title}}" By Email </h1>
+<hr>
+<form method="post" style="margin-top: 1.3em;" >
+    {{form|crispy}}
+{% csrf_token %}
+<button type="submit" class="btn btn-primary  btn-lg">SEND</button>
+</form>
+</div>
+</div>
+</div>
+{% block sidebar %} {% include 'blogapp/sidebar.html' %} {% endblock sidebar %}
+</div>
+</div>
+
+{% endif %}
+{% endblock content %}

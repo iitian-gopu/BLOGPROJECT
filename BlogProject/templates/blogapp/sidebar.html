@@ -1,0 +1,37 @@
+{% load blogapp_tags %}
+{% load static %}
+{% block sidebar %}
+
+<style>
+        .card{
+            box-shadow: 0 16px 48px #E3E7EB;
+            
+        }
+        #pcount{
+            font-weight: bold;
+    font-style: italic;
+    color: rgb(42, 106, 165);
+    font-size: 25px;
+        }
+       
+</style>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-right ">
+<div class="card my-4">
+        <h5 class="card-header">IITIAN_GOPU BLOG</h5>
+    <div class="card-body">
+        <p class="card-text">Total number of posts upto today: <span id="pcount">{% total_posts %}</span> </p>
+        <h3>Latest Posts:</h3>{% show_latest_posts %}
+       
+           <h3>Most Commented Posts:</h3>{% get_most_commented_posts as most_commented_posts %}
+        {% for post in most_commented_posts %}
+        <a href="{{post.get_absolute_url}}"  ><li>{{post.title}}</li></a> 
+        {% endfor %}
+       
+    </div>
+</div>
+</div>
+
+
+{% endblock sidebar %}
